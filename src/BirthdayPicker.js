@@ -12,6 +12,12 @@ type State = {
   selectedDay: Number, selectedonth: Number, selectedYear: number,
   daysArray: Array<Number>, monthsArray: Array<Number>, yearsArray: Array<Number>,
 }
+type Props = {
+  onValueSelection: Date => void,
+  hideIndicator?: boolean,
+  
+
+}
 
 export default class BirthdayPicker extends React.Component {
   constructor() {
@@ -44,91 +50,105 @@ export default class BirthdayPicker extends React.Component {
     localSelectedMonth = this.state.selectedMonth;
     localSelectedYear = this.state.selectedYear;
     localSelectedDay = this.state.daysArray[selectedPosition];
-  
+
     localArrObj = pickerBirthdayArray(localSelectedYear, localSelectedMonth);
-  
+
     this.setState({
       selectedYear: localSelectedYear,
       selectedMonth: localSelectedMonth,
       selectedDay: localSelectedDay,
       daysArray: localArrObj.dayArray,
       monthsArray: localArrObj.monthArray,
-      yearsArray: localArrObj.yearArray});
-  
+      yearsArray: localArrObj.yearArray
+    });
+    if (this.props.onValueSelection) {
+      this.props.onValueSelection(new Date(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay));
+    }
   }
   onMonthSelected = (selectedPosition) => {
     localSelectedMonth = this.state.monthsArray[selectedPosition];
     localSelectedYear = this.state.selectedYear;
     localSelectedDay = this.state.selectedDay;
-  
+
     localArrObj = pickerBirthdayArray(localSelectedYear, localSelectedMonth);
-  
+
     this.setState({
       selectedYear: localSelectedYear,
       selectedMonth: localSelectedMonth,
       selectedDay: localSelectedDay,
       daysArray: localArrObj.dayArray,
       monthsArray: localArrObj.monthArray,
-      yearsArray: localArrObj.yearArray});
+      yearsArray: localArrObj.yearArray
+    });
+    if (this.props.onValueSelection) {
+      this.props.onValueSelection(new Date(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay));
+    }
   }
   onYearSelected = (selectedPosition) => {
     localSelectedMonth = this.state.selectedMonth;
     localSelectedYear = this.state.yearsArray[selectedPosition];
     localSelectedDay = this.state.selectedDay;
-  
+
     localArrObj = pickerBirthdayArray(localSelectedYear, localSelectedMonth);
-  
+
     this.setState({
       selectedYear: localSelectedYear,
       selectedMonth: localSelectedMonth,
       selectedDay: localSelectedDay,
       daysArray: localArrObj.dayArray,
       monthsArray: localArrObj.monthArray,
-      yearsArray: localArrObj.yearArray});
+      yearsArray: localArrObj.yearArray
+    });
+    if (this.props.onValueSelection) {
+      this.props.onValueSelection(new Date(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay));
+    }
   }
-  render() {
 
-    return (
-      <View style={[styles.container,]}> 
-        <WheelPicker
-          style={styles.birthdayWheelPicker}
-          data={this.state.daysArray}
-          onItemSelected={this.onDaySelected}
-          isCyclic={false}
-          initPosition={0}
-        />
-        <WheelPicker
-          style={styles.birthdayWheelPicker}
-          data={this.state.monthsArray}
-          onItemSelected={this.onMonthSelected}
-          isCyclic={false}
-          initPosition={0}
-        />
-        <WheelPicker
-          style={styles.birthdayWheelPicker}
-          data={this.state.yearsArray}
-          onItemSelected={this.onYearSelected}
-          isCyclic={false}
-          initPosition={this.state.yearsArray.length - 1}
-        />
-      </View>
-    )
+
+
+    render() {
+
+      return (
+        <View style={[styles.container,]}>
+          <WheelPicker
+            style={styles.birthdayWheelPicker}
+            data={this.state.daysArray}
+            onItemSelected={this.onDaySelected}
+            isCyclic={false}
+            initPosition={0}
+          />
+          <WheelPicker
+            style={styles.birthdayWheelPicker}
+            data={this.state.monthsArray}
+            onItemSelected={this.onMonthSelected}
+            isCyclic={false}
+            initPosition={0}
+          />
+          <WheelPicker
+            style={styles.birthdayWheelPicker}
+            data={this.state.yearsArray}
+            onItemSelected={this.onYearSelected}
+            isCyclic={false}
+            initPosition={this.state.yearsArray.length - 1}
+          />
+        </View>
+      )
+    }
   }
-}
 
 let styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  wheelPicker: {
-    height: 150,
-    width: null,
-    flex: 1,
-  },
-  birthdayWheelPicker: {
-    height: 150,
-    width: null,
-    flex: 3,
-  },
-})
+    container: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      width:"50%",
+      alignContent: "center",
+      justifyContent: "center"
+    },
+    birthdayWheelPicker: {
+      alignContent: "center",
+      justifyContent: "center",
+      height: 110,
+      width: null,
+      flex: 1,
+    },
+  })
