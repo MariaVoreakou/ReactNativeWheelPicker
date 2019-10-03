@@ -54,11 +54,13 @@ export default class DatePicker extends React.Component<Props, State> {
     const millisBetween = selectedDate.getTime() - new Date().getTime()
     let millisBetweenStartDate
     let daysStartDate = 0
+
     if (startDate) {
       millisBetweenStartDate =
         new Date(startDate).getTime() - new Date().getTime()
       daysStartDate = millisBetweenStartDate / millisecondsPerDay
     }
+    
     const days = millisBetween / millisecondsPerDay
     const daysAfterSelectedDate = Math.round(daysStartDate)
     const initDayInex = startDate

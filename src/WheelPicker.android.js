@@ -33,6 +33,7 @@ export default class WheelPicker extends React.Component<Props> {
 
   onItemSelected = (event: any) => {
     if (this.props.onItemSelected) {
+      
       this.props.onItemSelected(event.nativeEvent.position)
     }
   }

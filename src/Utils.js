@@ -4,6 +4,7 @@
  * */
 
 import moment from 'moment'
+/*import { generateKeyPair } from 'crypto';*/
 
 const AM = 'AM'
 const PM = 'PM'
@@ -63,6 +64,71 @@ export function pickerDateArray(date: string, daysCount: number = YEAR) {
     }
     return arr
 }
+/* Function pickerDayArray, getDaysinMonth
+** Author Maria Voreakou
+*/
+getDaysInMonth = function (month, year) {
+    // Here January is 1 based
+    //Day 0 is the last day in the previous month
+    return new Date(year, month, 0).getDate();
+    // Here January is 0 based
+    // return new Date(year, month+1, 0).getDate();
+};
+
+export function pickerBirthdayArray(selectedYear, selectedMonth ) {
+
+    const dayArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+     "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+    const monthArr = [];
+    const yearArr = [];
+
+    let currentMoment = new Date();
+
+    var birthdayPicker = new Object();
+    birthdayPicker.yearArray = yearArr;
+    birthdayPicker.monthArray = monthArr;
+    birthdayPicker.dayArray = dayArr;
+    birthdayPicker.currentDay = currentMoment.getDate();
+    birthdayPicker.currentMonth = currentMoment.getMonth() + 1;
+    birthdayPicker.currentYear = currentMoment.getFullYear();
+
+    //loop until current year
+    for (year = 1900; year <= birthdayPicker.currentYear; year++) {
+        birthdayPicker.yearArray.push(year+"");
+    }
+
+    //create months array and check for the last month of the current year
+    if (selectedYear == birthdayPicker.currentYear) {
+        for (i = 1; i <= birthdayPicker.currentMonth; i++) {
+            birthdayPicker.monthArray.push(i+"");
+        }
+    }
+    else {
+        for (i = 1; i <= 12; i++) {
+            birthdayPicker.monthArray.push(i+"");
+        }
+    }
+    if (selectedYear == birthdayPicker.currentYear && selectedMonth == birthdayPicker.currentMonth) {
+        birthdayPicker.dayArray.splice(birthdayPicker.currentDay);
+    }
+    else {
+        if (getDaysInMonth(selectedMonth, selectedYear) == 30) {
+            birthdayPicker.dayArray.splice(29, 1);
+        }
+        else if (getDaysInMonth(selectedMonth, selectedYear) == 29) {
+            birthdayPicker.dayArray.splice(28, 2);
+        }
+        else if (getDaysInMonth(selectedMonth, selectedYear) == 28) {
+            birthdayPicker.dayArray.splice(27, 3);
+        }
+    }
+console.warn(birthdayPicker);
+    return birthdayPicker;
+
+}
+
+
+
 
 function formatDatePicker(date: number) {
     return moment.unix(date).format('ddd MMM D');
