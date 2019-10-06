@@ -62,6 +62,7 @@ export default class BirthdayPicker extends React.Component {
       yearsArray: localArrObj.yearArray
     });
     if (this.props.onValueSelection) {
+      console.log(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay);
       this.props.onValueSelection(new Date(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay));
     }
   }
@@ -81,6 +82,7 @@ export default class BirthdayPicker extends React.Component {
       yearsArray: localArrObj.yearArray
     });
     if (this.props.onValueSelection) {
+      console.log(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay);
       this.props.onValueSelection(new Date(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay));
     }
   }
@@ -100,6 +102,7 @@ export default class BirthdayPicker extends React.Component {
       yearsArray: localArrObj.yearArray
     });
     if (this.props.onValueSelection) {
+      console.log(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay);
       this.props.onValueSelection(new Date(localSelectedYear+"-"+localSelectedMonth+"-"+localSelectedDay));
     }
   }
