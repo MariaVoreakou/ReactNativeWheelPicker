@@ -27,9 +27,19 @@ export default class BirthdayPicker extends React.Component {
     const initYear = currentMoment.getFullYear();
     const initMonth = currentMoment.getMonth() + 1;
 
-    selectedYear = currentMoment.getFullYear();
-    selectedMonth = currentMoment.getMonth() + 1;
-    selectedDay = currentMoment.getDate();
+    selectedYear = currentMoment.getFullYear()+"";
+    selectedMonth = (currentMoment.getMonth() + 1)+"";
+
+    selectedDay = currentMoment.getDate()+"";
+
+    if (selectedDay.length == 1) {
+      selectedDay = "0" + selectedDay;
+    }
+    
+    if (selectedMonth.length == 1) {
+      selectedMonth = "0" + selectedMonth;
+    }
+   
 
     var returnObject = pickerBirthdayArray(initYear, initMonth);
     daysArray = returnObject.dayArray;
@@ -68,7 +78,6 @@ export default class BirthdayPicker extends React.Component {
       yearsArray: localArrObj.yearArray
     });
     if (this.props.onValueSelection) {
-      console.log(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay);
       this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
     }
   }
@@ -81,6 +90,7 @@ export default class BirthdayPicker extends React.Component {
     }
     if (localSelectedMonth.length == 1) {
       localSelectedMonth = "0" + localSelectedMonth;
+      
     }
     localArrObj = pickerBirthdayArray(localSelectedYear, localSelectedMonth);
 
@@ -93,7 +103,6 @@ export default class BirthdayPicker extends React.Component {
       yearsArray: localArrObj.yearArray
     });
     if (this.props.onValueSelection) {
-      console.log(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay);
       this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
     }
   }
@@ -101,11 +110,13 @@ export default class BirthdayPicker extends React.Component {
     localSelectedMonth = this.state.selectedMonth;
     localSelectedYear = this.state.yearsArray[selectedPosition];
     localSelectedDay = this.state.selectedDay;
+
     if (localSelectedDay.length == 1) {
       localSelectedDay = "0" + localSelectedDay;
     }
     if (localSelectedMonth.length == 1) {
       localSelectedMonth = "0" + localSelectedMonth;
+      
     }
     localArrObj = pickerBirthdayArray(localSelectedYear, localSelectedMonth);
 
@@ -118,7 +129,6 @@ export default class BirthdayPicker extends React.Component {
       yearsArray: localArrObj.yearArray
     });
     if (this.props.onValueSelection) {
-      console.log(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay);
       this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
     }
   }
