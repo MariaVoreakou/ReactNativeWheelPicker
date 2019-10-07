@@ -88,19 +88,19 @@ export function pickerBirthdayArray(selectedYear, selectedMonth) {
     birthdayPicker.yearArray = yearArr;
     birthdayPicker.monthArray = monthArr;
     birthdayPicker.dayArray = dayArr;
-    
-    birthdayPicker.currentDay = currentMoment.getDate()+"";
-    birthdayPicker.currentMonth = (currentMoment.getMonth() + 1)+"";
-    birthdayPicker.currentYear = currentMoment.getFullYear()+"";
+
+    birthdayPicker.currentDay = currentMoment.getDate() + "";
+    birthdayPicker.currentMonth = (currentMoment.getMonth() + 1) + "";
+    birthdayPicker.currentYear = currentMoment.getFullYear() + "";
     birthdayPicker.checkValue = getDaysInMonth(selectedMonth, selectedYear);
 
-    
+
     //loop until current year
     for (year = 1900; year <= birthdayPicker.currentYear; year++) {
         birthdayPicker.yearArray.push(year + "");
     }
     //create months array and check for the last month of the current year
-    //if selected is the current create months up to to current
+    //if selected is the current create months up to current
     if (selectedYear == birthdayPicker.currentYear) {
         for (i = 1; i <= birthdayPicker.currentMonth; i++) {
             birthdayPicker.monthArray.push(i + "");
@@ -118,28 +118,30 @@ export function pickerBirthdayArray(selectedYear, selectedMonth) {
 
 
         birthdayPicker.dayArray[birthdayPicker.currentDay];
-        birthdayPicker.monthArray[selectedMonth-1];
+        birthdayPicker.monthArray[selectedMonth - 1];
         birthdayPicker.yearArray[selectedYear];
     }
     else {
-        if (birthdayPicker.checkValue == 30) {
-            birthdayPicker.dayArray.splice(30);
-
-            birthdayPicker.dayArray[birthdayPicker.currentDay];
+        if (birthdayPicker.checkValue == 31) {
+            birthdayPicker.dayArray[30];
             birthdayPicker.monthArray[selectedMonth-1];
             birthdayPicker.yearArray[selectedYear];
         }
-        else if (getDaysInMonth(selectedMonth, selectedYear) == 29) {
+        else if (birthdayPicker.checkValue == 30) {
+            birthdayPicker.dayArray.splice(30);
+            birthdayPicker.dayArray[29];
+            birthdayPicker.monthArray[selectedMonth-1];
+            birthdayPicker.yearArray[selectedYear];
+        }
+        else if (birthdayPicker.checkValue == 29) {
             birthdayPicker.dayArray.splice(29);
-
-            birthdayPicker.dayArray[birthdayPicker.currentDay];
+            birthdayPicker.dayArray[28];
             birthdayPicker.monthArray[selectedMonth-1];
             birthdayPicker.yearArray[selectedYear];
         }
         else if (birthdayPicker.checkValue == 28) {
             birthdayPicker.dayArray.splice(28);
-
-            birthdayPicker.dayArray[birthdayPicker.currentDay];
+            birthdayPicker.dayArray[27];
             birthdayPicker.monthArray[selectedMonth-1];
             birthdayPicker.yearArray[selectedYear];
         }
@@ -179,4 +181,5 @@ export function getAmArray() {
     arr.push(PM)
     return arr
 }
+
 
