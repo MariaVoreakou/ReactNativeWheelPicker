@@ -210,7 +210,7 @@ export default class BirthdayPicker extends React.Component {
       localSelectedDay = this.state.daysArray[27];
       //console.log("onMonthSelected ->28 days are " + localSelectedDay);
       if (localSelectedDay == this.state.daysArray[30] || localSelectedDay == this.state.daysArray[29] || localSelectedDay == this.state.daysArray[28]) {
-        localSelectedDay = this.state.daysArray[28];
+        localSelectedDay = this.state.daysArray[27];
       }
 
       if (localSelectedMonth.length == 1) {
