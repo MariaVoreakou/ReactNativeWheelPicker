@@ -97,45 +97,53 @@ export default class BirthdayPicker extends React.Component {
     var monthPicker = new Object();
 
     monthPicker.checkDate = myDate.getDate();
-    console.log("monthPicker.checkDate " + monthPicker.checkDate);
+    //console.log("monthPicker.checkDate " + monthPicker.checkDate);
 
     if (monthPicker.checkDate == 30) {
       this.state.daysArray[29];
-      
-      console.log("onMonthSelected ->30 days are " + localSelectedDay);
-      if (""+localSelectedDay.length == 1) {
+      if (localSelectedDay == this.state.daysArray[30]) {
+        localSelectedDay = this.state.daysArray[29];
+      }
+      //console.log("onMonthSelected ->30 days are " + localSelectedDay);
+      if ("" + localSelectedDay.length == 1) {
         localSelectedDay = "0" + localSelectedDay;
-        console.log("if lenght " + localSelectedDay);
+        //console.log("if lenght " + localSelectedDay);
         this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
       }
-      if (""+localSelectedMonth.length == 1) {
-        console.log("if month lenght " + localSelectedDay);
+      if ("" + localSelectedMonth.length == 1) {
+        //console.log("if month lenght " + localSelectedDay);
         localSelectedMonth = "0" + localSelectedMonth;
-        
+
         this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
       }
     }
     else if (monthPicker.checkDate == 29) {
       this.state.daysArray[28];
-      console.log("onMonthSelected ->29 days are " + localSelectedDay);
-      if (""+localSelectedDay.length == 1) {
+      //console.log("onMonthSelected ->29 days are " + localSelectedDay);
+      if (localSelectedDay == this.state.daysArray[30] || localSelectedDay == this.state.daysArray[29]) {
+        localSelectedDay = this.state.daysArray[28];
+      }
+      if ("" + localSelectedDay.length == 1) {
         localSelectedDay = "0" + localSelectedDay;
         this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
       }
-      if (""+localSelectedMonth.length == 1) {
+      if ("" + localSelectedMonth.length == 1) {
         localSelectedMonth = "0" + localSelectedMonth;
         this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
       }
-      
+
     }
     else if (monthPicker.checkDate == 28) {
       this.state.daysArray[27];
-      console.log("onMonthSelected ->28 days are " + localSelectedDay);
-      if (""+localSelectedDay.length == 1) {
+      //console.log("onMonthSelected ->28 days are " + localSelectedDay);
+      if (localSelectedDay == this.state.daysArray[30] || localSelectedDay == this.state.daysArray[29] || localSelectedDay == this.state.daysArray[28]) {
+        localSelectedDay = this.state.daysArray[27];
+      }
+      if ("" + localSelectedDay.length == 1) {
         localSelectedDay = "0" + localSelectedDay;
         this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
       }
-      if (""+localSelectedMonth.length == 1) {
+      if ("" + localSelectedMonth.length == 1) {
         localSelectedMonth = "0" + localSelectedMonth;
         this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
       }
@@ -143,10 +151,10 @@ export default class BirthdayPicker extends React.Component {
     else {
       //console.log(localSelectedDay);
       this.state.daysArray[localSelectedDay - 1];
-      if (""+localSelectedDay.length == 1) {
+      if ("" + localSelectedDay.length == 1) {
         localSelectedDay = "0" + localSelectedDay;
       }
-      if (""+localSelectedMonth.length == 1) {
+      if ("" + localSelectedMonth.length == 1) {
         localSelectedMonth = "0" + localSelectedMonth;
       }
       this.props.onValueSelection(new Date(localSelectedYear + "-" + localSelectedMonth + "-" + localSelectedDay));
@@ -178,7 +186,9 @@ export default class BirthdayPicker extends React.Component {
     if (yearPicker.checkDate == 30) {
       this.state.daysArray[29];
       //console.log("onMonthSelected ->30 days are " + localSelectedDay);
-      
+      if (localSelectedDay == this.state.daysArray[30]) {
+        localSelectedDay = this.state.daysArray[29];
+      }
       if (localSelectedMonth.length == 1) {
         localSelectedMonth = "0" + localSelectedMonth;
       }
@@ -187,7 +197,9 @@ export default class BirthdayPicker extends React.Component {
     else if (yearPicker.checkDate == 29) {
       this.state.daysArray[28];
       //console.log("onMonthSelected ->29 days are " + localSelectedDay);
-      
+      if (localSelectedDay == this.state.daysArray[30] || localSelectedDay == this.state.daysArray[29]) {
+        localSelectedDay = this.state.daysArray[28];
+      }
       if (localSelectedMonth.length == 1) {
         localSelectedMonth = "0" + localSelectedMonth;
       }
@@ -197,7 +209,10 @@ export default class BirthdayPicker extends React.Component {
       this.state.daysArray[27];
       localSelectedDay = this.state.daysArray[27];
       //console.log("onMonthSelected ->28 days are " + localSelectedDay);
-      
+      if (localSelectedDay == this.state.daysArray[30] || localSelectedDay == this.state.daysArray[29] || localSelectedDay == this.state.daysArray[28]) {
+        localSelectedDay = this.state.daysArray[28];
+      }
+
       if (localSelectedMonth.length == 1) {
         localSelectedMonth = "0" + localSelectedMonth;
       }
