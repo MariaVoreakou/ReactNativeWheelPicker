@@ -88,12 +88,13 @@ export function pickerBirthdayArray(selectedYear, selectedMonth) {
     birthdayPicker.yearArray = yearArr;
     birthdayPicker.monthArray = monthArr;
     birthdayPicker.dayArray = dayArr;
-    birthdayPicker.currentDay = currentMoment.getDate();
-    birthdayPicker.currentMonth = currentMoment.getMonth() + 1;
-    birthdayPicker.currentYear = currentMoment.getFullYear();
-
+    
+    birthdayPicker.currentDay = currentMoment.getDate()+"";
+    birthdayPicker.currentMonth = (currentMoment.getMonth() + 1)+"";
+    birthdayPicker.currentYear = currentMoment.getFullYear()+"";
     birthdayPicker.checkValue = getDaysInMonth(selectedMonth, selectedYear);
 
+    
     //loop until current year
     for (year = 1900; year <= birthdayPicker.currentYear; year++) {
         birthdayPicker.yearArray.push(year + "");
@@ -114,16 +115,33 @@ export function pickerBirthdayArray(selectedYear, selectedMonth) {
     //if selected year and selected month is the current, then show days up to today
     if (selectedYear == birthdayPicker.currentYear && selectedMonth == birthdayPicker.currentMonth) {
         birthdayPicker.dayArray.splice(birthdayPicker.currentDay);
+
+
+        birthdayPicker.dayArray[birthdayPicker.currentDay];
+        birthdayPicker.monthArray[selectedMonth-1];
+        birthdayPicker.yearArray[selectedYear];
     }
     else {
         if (birthdayPicker.checkValue == 30) {
             birthdayPicker.dayArray.splice(30);
+
+            birthdayPicker.dayArray[birthdayPicker.currentDay];
+            birthdayPicker.monthArray[selectedMonth-1];
+            birthdayPicker.yearArray[selectedYear];
         }
         else if (getDaysInMonth(selectedMonth, selectedYear) == 29) {
             birthdayPicker.dayArray.splice(29);
+
+            birthdayPicker.dayArray[birthdayPicker.currentDay];
+            birthdayPicker.monthArray[selectedMonth-1];
+            birthdayPicker.yearArray[selectedYear];
         }
         else if (birthdayPicker.checkValue == 28) {
             birthdayPicker.dayArray.splice(28);
+
+            birthdayPicker.dayArray[birthdayPicker.currentDay];
+            birthdayPicker.monthArray[selectedMonth-1];
+            birthdayPicker.yearArray[selectedYear];
         }
     }
     return birthdayPicker;
@@ -161,3 +179,4 @@ export function getAmArray() {
     arr.push(PM)
     return arr
 }
+
